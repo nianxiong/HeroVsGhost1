@@ -67,7 +67,7 @@ namespace HeroVsGhost1
 
         public static void MoveA(Hero h, Ghost g, Status s)  // farmer attack
         {
-            if (h.farmers <= 0)
+            if (h.farmers <= 0 || s.WallBlood >=10)
             {
                 return;
             }
@@ -170,7 +170,7 @@ namespace HeroVsGhost1
 
         public static void MoveB(Hero h, Ghost g, Status s)  // archer attack
         {
-            if (h.archers <= 0)
+            if (h.archers <= 0 || s.WallBlood >= 10)
             {
                 return;
             }
@@ -267,6 +267,11 @@ namespace HeroVsGhost1
 
         public static void MoveC(Hero h, Ghost g, Status s)  // hero attack
         {
+            if (s.WallBlood >= 10)
+            {
+                return;
+            }
+
             Hero ch = new Hero();
             ch.archers = h.archers;
             ch.farmers = h.farmers;
