@@ -12,6 +12,11 @@ namespace HeroVsGhost1
 
         static void Main(string[] args)
         {
+            Console.WriteLine("begin!!!");
+            Console.WriteLine("hero: 2 farmers 4 archers!");
+            Console.WriteLine("ghost: not Attack!");
+            Console.WriteLine("status: f1->0 f2->0 a1->0 a2->0 ga->1 go->0 wb->3");
+
             Hero h = new Hero();
             h.archers = 4;
             h.farmers = 2;
@@ -33,8 +38,9 @@ namespace HeroVsGhost1
 
             if (s.WallBlood >= 10)
             {
+                Console.WriteLine("Result:");
                 for (int i = 0; i < result.Count; i++)
-                {
+                {                    
                     Console.Write(result[i]);
                     Console.Write("->");
                 }
@@ -43,6 +49,8 @@ namespace HeroVsGhost1
 
         public static void HeroVsGhost(Hero h,Ghost g,Status s)
         {
+            System.Threading.Thread.Sleep(15 * 1000);
+
             if (s.WallBlood < 10 && h.farmers > 0)
             {
                 MoveA(h, g, s);
@@ -53,9 +61,7 @@ namespace HeroVsGhost1
                 MoveB(h, g, s);
             }
 
-            MoveC(h, g, s);
-
-            
+            MoveC(h, g, s);            
         }
 
         public static void MoveA(Hero h, Ghost g, Status s)  // farmer attack
@@ -86,6 +92,10 @@ namespace HeroVsGhost1
             s.Farmer2Num += 1;
             s.WallBlood += (s.Farmer2Num + s.Farmer1Num);
 
+            Console.WriteLine("farmer attack!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
             result.Add("farmer");
 
             if (s.WallBlood >= 10)
@@ -105,6 +115,11 @@ namespace HeroVsGhost1
             CalculateGhostAttack(g, s);
             g.isAttack = !g.isAttack;
 
+            Console.WriteLine("ghost attack!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
+
             if (s.WallBlood <= 0)
             {
                 h.archers = ch.archers;
@@ -120,6 +135,12 @@ namespace HeroVsGhost1
                 s.GhostAttack = cs.GhostAttack;
                 s.GhostNotAttack = cs.GhostNotAttack;
                 s.WallBlood = cs.WallBlood;
+
+                Console.WriteLine("failed!return to last step!");
+                Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+                Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
+                result.Remove(result[result.Count - 1]);
 
                 return;
             }
@@ -139,6 +160,11 @@ namespace HeroVsGhost1
             s.GhostAttack = cs.GhostAttack;
             s.GhostNotAttack = cs.GhostNotAttack;
             s.WallBlood = cs.WallBlood;
+
+            Console.WriteLine("failed!return to last step!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+            result.Remove(result[result.Count - 1]);
         }
 
         public static void MoveB(Hero h, Ghost g, Status s)  // archer attack
@@ -167,10 +193,15 @@ namespace HeroVsGhost1
 
             h.archers -= 1;
             s.Archer2Num += 1;
-            CalculateArcherAttack(s);
+            CalculateArcherAttack(s, g);
 
             result.Add("archer");
-            
+
+            Console.WriteLine("archer attack!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
+
             if (g.isAttack)
             {
                 s.GhostAttack += 1;
@@ -182,6 +213,11 @@ namespace HeroVsGhost1
 
             CalculateGhostAttack(g, s);
             g.isAttack = !g.isAttack;
+
+            Console.WriteLine("ghost attack!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
 
             if (s.WallBlood <= 0)
             {
@@ -199,6 +235,10 @@ namespace HeroVsGhost1
                 s.GhostNotAttack = cs.GhostNotAttack;
                 s.WallBlood = cs.WallBlood;
 
+                Console.WriteLine("failed!return to last step!");
+                Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+                Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+                result.Remove(result[result.Count - 1]);
                 return;
             }
 
@@ -217,6 +257,11 @@ namespace HeroVsGhost1
             s.GhostAttack = cs.GhostAttack;
             s.GhostNotAttack = cs.GhostNotAttack;
             s.WallBlood = cs.WallBlood;
+
+            Console.WriteLine("failed!return to last step!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+            result.Remove(result[result.Count - 1]);
         }
 
         public static void MoveC(Hero h, Ghost g, Status s)  // hero attack
@@ -246,7 +291,12 @@ namespace HeroVsGhost1
             s.Archer2Num = 0;
             s.WallBlood += 1;
 
-            result.Add("farmer");
+            result.Add("hero");
+
+            Console.WriteLine("hero attack!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
 
             if (s.WallBlood >= 10)
             {
@@ -264,6 +314,11 @@ namespace HeroVsGhost1
 
             CalculateGhostAttack(g, s);
             g.isAttack = !g.isAttack;
+            
+            Console.WriteLine("ghost attack!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+
 
             if (s.WallBlood <= 0)
             {
@@ -281,6 +336,10 @@ namespace HeroVsGhost1
                 s.GhostNotAttack = cs.GhostNotAttack;
                 s.WallBlood = cs.WallBlood;
 
+                Console.WriteLine("failed!return to last step!");
+                Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+                Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+                result.Remove(result[result.Count - 1]);
                 return;
             }
 
@@ -299,14 +358,72 @@ namespace HeroVsGhost1
             s.GhostAttack = cs.GhostAttack;
             s.GhostNotAttack = cs.GhostNotAttack;
             s.WallBlood = cs.WallBlood;
+
+            Console.WriteLine("failed!return to last step!");
+            Console.WriteLine("hero: " + h.farmers.ToString() + " farmers " + h.archers + " archers!");
+            Console.WriteLine("status: f1->" + s.Farmer1Num + " f2->" + s.Farmer2Num + " a1->" + s.Archer1Num + " a2->" + s.Archer2Num + " ga->" + s.GhostAttack + " go->" + s.GhostNotAttack + " wb->" + s.WallBlood);
+            result.Remove(result[result.Count - 1]);
         }
 
         public static void CalculateGhostAttack(Ghost g, Status s)
-        { }
-
-        private static void CalculateArcherAttack(Status s)
         {
-            throw new NotImplementedException();
+            if (s.GhostAttack >= 3 || s.GhostNotAttack >= 3)
+            {
+                s.WallBlood = 0;
+                return;
+            }
+
+            if (g.isAttack)
+            {
+                if(s.Farmer1Num > 0)
+                {
+                    s.Farmer1Num -= 1;
+                }
+                else if(s.Archer1Num > 0)
+                {
+                    s.Archer1Num -= 1;
+                }
+                else if(s.Farmer2Num >= s.Archer2Num && s.Farmer2Num > 0)
+                {
+                    s.Farmer2Num -= 1;
+                    s.Farmer1Num += 1;
+                }
+                else if(s.Archer2Num >= s.Farmer2Num && s.Archer2Num >0)
+                {
+                    s.Archer2Num -= 1;
+                    s.Archer1Num += 1;
+                }
+            }
+            else
+            {
+                s.WallBlood -= 1;
+            }
+        }
+
+        private static void CalculateArcherAttack(Status s,Ghost g)
+        {
+            for (int i = 0; i < s.Archer1Num + s.Archer2Num; i++)
+            {
+                if (s.GhostAttack > s.GhostNotAttack && s.GhostAttack > 0)
+                {
+                    s.GhostAttack -= 1;
+                }
+                else if (s.GhostNotAttack > s.GhostAttack && s.GhostNotAttack > 0)
+                {
+                    s.GhostNotAttack -= 1;
+                }
+                else if (s.GhostNotAttack == s.GhostAttack)
+                {
+                    if (g.isAttack)
+                    {
+                        s.GhostAttack = s.GhostAttack > 1 ? s.GhostAttack - 1 : 0;
+                    }
+                    else
+                    {
+                        s.GhostNotAttack = s.GhostNotAttack > 1 ? s.GhostNotAttack - 1 : 0;
+                    }
+                }
+            }
         }
     }
 }

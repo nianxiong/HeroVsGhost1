@@ -4,3 +4,9 @@ D:\VS2015\HeroVsGhost1\HeroVsGhost1\bin\Debug\HeroVsGhost1.pdb
 D:\VS2015\HeroVsGhost1\HeroVsGhost1\obj\Debug\HeroVsGhost1.csprojResolveAssemblyReference.cache
 D:\VS2015\HeroVsGhost1\HeroVsGhost1\obj\Debug\HeroVsGhost1.exe
 D:\VS2015\HeroVsGhost1\HeroVsGhost1\obj\Debug\HeroVsGhost1.pdb
+C:\Users\xiongn\Documents\GitHub\HeroVsGhost1\HeroVsGhost1\bin\Debug\HeroVsGhost1.exe.config
+C:\Users\xiongn\Documents\GitHub\HeroVsGhost1\HeroVsGhost1\obj\Debug\HeroVsGhost1.exe
+C:\Users\xiongn\Documents\GitHub\HeroVsGhost1\HeroVsGhost1\obj\Debug\HeroVsGhost1.pdb
+C:\Users\xiongn\Documents\GitHub\HeroVsGhost1\HeroVsGhost1\bin\Debug\HeroVsGhost1.exe
+C:\Users\xiongn\Documents\GitHub\HeroVsGhost1\HeroVsGhost1\bin\Debug\HeroVsGhost1.pdb
+C:\Users\xiongn\Documents\GitHub\HeroVsGhost1\HeroVsGhost1\obj\Debug\HeroVsGhost1.csprojResolveAssemblyReference.cache
