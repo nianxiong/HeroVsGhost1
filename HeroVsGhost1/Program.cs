@@ -50,7 +50,7 @@ namespace HeroVsGhost1
 
         public static void HeroVsGhost(Hero h,Ghost g,Status s)
         {
-            System.Threading.Thread.Sleep(2 * 1000);
+            System.Threading.Thread.Sleep(1 * 1000);
 
             if (s.WallBlood < 10 && h.farmers > 0)
             {
